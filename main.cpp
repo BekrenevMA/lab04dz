@@ -96,7 +96,7 @@ cale (uint16_t op1, char operat, uint16_t op2)
         cout<<'\n';
     }
 
-        if (operat=='|')
+    if (operat=='|')
     {
         print_in_hex(&op1, sizeof(op1));
         cout<<operat<<" ";
@@ -115,7 +115,7 @@ cale (uint16_t op1, char operat, uint16_t op2)
         cout<<'\n';
     }
 
-        if (operat=='^')
+    if (operat=='^')
     {
         print_in_hex(&op1, sizeof(op1));
         cout<<operat<<" ";
@@ -134,6 +134,16 @@ cale (uint16_t op1, char operat, uint16_t op2)
         cout<<'\n';
     }
 }
+
+struct Student
+{
+    char name[17];
+    uint16_t year;
+    float average;
+    uint8_t gender:1;
+    uint8_t courses;
+    Student* starosta;
+};
 
 int main()
 {
@@ -154,12 +164,106 @@ int main()
     assert(nibble_to_hex(0xe) == 'e');
     assert(nibble_to_hex(0xf) == 'f');
 
-    cout<<"Enter your transaction: ";
+    /*cout<<"Enter your transaction: ";
     uint16_t op1, op2;
-    char operat='&';
+    char operat;
     cin>> op1 >> operat >>op2;
 
     cale(op1, operat, op2);
+*/
+    Student students[3]=
+    {
+        {"Nikolay", 2018, 2.4, 0, 1, nullptr},
+        {"Misha", 2018, 4.0, 1, 1, &students[0]},
+        {"Marina", 2018, 4.5, 0, 1, &students[0]}
+    };
+
+    cout<<"Addres of students:"<< '\n'
+        <<&students<<'\n';
+    cout<<"Size of students:"
+        <<sizeof(students)<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    for (size_t i=0; i<3; i++)
+    {
+        cout<<"Addres of student "<<i+1<<" : "<< '\n'
+        <<&students[i]<<'\n';
+        cout<<"Size of student"<<i+1<<": "
+            <<sizeof(students[i])<< '\n';
+        cout<<"-----------------------------"<< '\n';
+    }
+
+    cout<<"Addres of name of student 1: "<< '\n'
+        <<&students[1].name<< '\n';
+    cout<<"Offset of name of student 1: "<< '\n'
+        <<offsetof(Student, name)<< '\n';
+    cout<<"Size of name of student 1: "<< '\n'
+        <<sizeof(students[1].name)<< '\n';
+    cout<<"Print_in_hex of name of student 1 : "<< '\n';
+    print_in_hex(&students[1].name, sizeof(students[1].name));
+    cout<< '\n';
+    cout<<"Print_in_binary of name of student 1 : "<< '\n';
+    print_in_binary(&students[1].name, sizeof(students[1].name));
+    cout<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    cout<<"Addres of year of student 1: "<< '\n'
+        <<&students[1].year<< '\n';
+    cout<<"Offset of year of student 1: "<< '\n'
+        <<offsetof(Student, year)<< '\n';
+    cout<<"Size of year of student 1: "<< '\n'
+        <<sizeof(students[1].year)<< '\n';
+    cout<<"Print_in_hex of year of student 1 : "<< '\n';
+    print_in_hex(&students[1].year, sizeof(students[1].year));
+    cout<< '\n';
+    cout<<"Print_in_binary of year of student 1 : "<< '\n';
+    print_in_binary(&students[1].year, sizeof(students[1].year));
+    cout<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    cout<<"Addres of average of student 1: "<< '\n'
+        <<&students[1].average<< '\n';
+    cout<<"Offset of average of student 1: "<< '\n'
+        <<offsetof(Student, average)<< '\n';
+    cout<<"Size of average of student 1: "<< '\n'
+        <<sizeof(students[1].average)<< '\n';
+    cout<<"Print_in_hex of average of student 1 : "<< '\n';
+    print_in_hex(&students[1].average, sizeof(students[1].average));
+    cout<< '\n';
+    cout<<"Print_in_binary of average of student 1 : "<< '\n';
+    print_in_binary(&students[1].average, sizeof(students[1].average));
+    cout<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    cout<<"Addres of courses of student 1: "<< '\n'
+        <<&students[1].courses<< '\n';
+    cout<<"Offset of courses of student 1: "<< '\n'
+        <<offsetof(Student, courses)<< '\n';
+    cout<<"Size of courses of student 1: "<< '\n'
+        <<sizeof(students[1].courses)<< '\n';
+    cout<<"Print_in_hex of courses of student 1 : "<< '\n';
+    print_in_hex(&students[1].courses, sizeof(students[1].courses));
+    cout<< '\n';
+    cout<<"Print_in_binary of courses of student 1 : "<< '\n';
+    print_in_binary(&students[1].courses, sizeof(students[1].courses));
+    cout<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    cout<<"Addres of starosta of student 1: "<< '\n'
+        <<&students[1].starosta<< '\n';
+    cout<<"Offset of starosta of student 1: "<< '\n'
+        <<offsetof(Student, starosta)<< '\n';
+    cout<<"Size of starosta of student 1: "<< '\n'
+        <<sizeof(students[1].starosta)<< '\n';
+    cout<<"Print_in_hex of starosta of student 1 : "<< '\n';
+    print_in_hex(&students[1].starosta, sizeof(students[1].starosta));
+    cout<< '\n';
+    cout<<"Print_in_binary of starosta of student 1 : "<< '\n';
+    print_in_binary(&students[1].starosta, sizeof(students[1].starosta));
+    cout<< '\n';
+    cout<<"-----------------------------"<< '\n';
+
+    print_in_hex(&students[1], sizeof(students[1]));
 
     return 0;
 }
