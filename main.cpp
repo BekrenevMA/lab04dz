@@ -22,7 +22,7 @@ int main()
 
     if (strcspn(in_file, illegal_characters)==strlen(in_file))
     {
-        if (((strchr(in_file, ':')==strrchr(in_file, ':'))&&(strcspn( in_file, ":")==1))||(strcspn(in_file, ":")==strlen(in_file)))
+        if (((strchr(in_file, ':')==strrchr(in_file, ':'))&&(strcspn( in_file, ":")==1)&&(strcspn( in_file, "/")==2))||(strcspn(in_file, ":")==strlen(in_file)))
         {
             const size_t dot = strcspn(in_file, ".");
             start+=dot;
@@ -63,7 +63,7 @@ int main()
         }
         else
         {
-            cout<<"Your file contains two or more \":\" or the possition of \":\" not the srcond or it is't \"\\\" after the \":\"";
+            cout<<"Your file contains two or more \":\" or the position of \":\" not the second or it is't \"/\" after the \":\"";
         }
     }
     else
